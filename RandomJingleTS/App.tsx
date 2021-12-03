@@ -1,4 +1,7 @@
 /**
+ * App that will play random music files from an on-device directory at random intervals
+ * 
+ * Based on:
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
@@ -7,9 +10,14 @@
  *
  * @format
  */
-import React from 'react';
+
+
+
+import React, { Component } from 'react';
+
 import {
   Alert,
+  AppRegistry,
   Button,
   SafeAreaView,
   ScrollView,
@@ -26,6 +34,7 @@ import {
   MediaStates
 } from '@react-native-community/audio-toolkit';
 
+import PropTypes from 'prop-types';
 
 import {
   Colors,
@@ -35,81 +44,60 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { Stopwatch, Timer } from 'react-native-stopwatch-timer';
 
-const Section: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-            <Button
-              onPress={() => Alert.alert("Button has been pressed")}
-              title="I'm a button"
-            />
 
-        </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> Hi world!
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+interface AppProps {
+  timerStart: boolean
+  timerDuration: Number
+  timerReset: boolean
+  
+}
+
+interface AppState {
+  timerStart: boolean
+  
+  timerDuration: Number
+  timerReset: boolean
+}
+
+class App extends Component<AppProps, AppState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      timerStart: false,
+      timerDuration: 90000,
+      timerReset: false,
+    };
+    this.toggleTimer = this.toggleTimer.bind(this);
+
+  }
+
+  toggleTimer() {
+    this.setState({timerStart: !this.state.timerStart, timerReset: false});
+  }
+
+  resetTimer() {
+    this.setState({timerStart: false, timerReset: true});
+  }
+
+
+  render() {
+    return (
+      <View>
+        
+        
+      </View>
+    );
+  }
+  
+}
+
+
+
 
 const styles = StyleSheet.create({
   sectionContainer: {

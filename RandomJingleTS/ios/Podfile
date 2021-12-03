@@ -16,6 +16,8 @@ target 'RandomJingleTS' do
 
   pod 'ReactNativeAudioToolkit', :path => '../node_modules/@react-native-community/audio-toolkit'
 
+  pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
+
   target 'RandomJingleTSTests' do
     inherit! :complete
     # Pods for testing
