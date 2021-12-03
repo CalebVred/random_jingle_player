@@ -58,3 +58,8 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+#Bundled Audio files
+android/app/src/main/res/raw/
+*.mp3
+
